@@ -2,17 +2,11 @@
 # See also: https://github.com/marketplace/actions/bazel-action
 
 name: Nightly Fuzz
-on:
-  schedule:
-    # Nightly at midnight -- uses UTC, so 7am.
-    - cron:  '0 7 * * *'
-  # This lets us trigger manually from the UI.
-  workflow_dispatch:
-
+on: [push]
 jobs:
   build:
     name: Nightly Fuzz
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Mount Bazel Cache
